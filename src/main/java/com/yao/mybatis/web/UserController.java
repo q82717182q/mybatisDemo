@@ -37,5 +37,14 @@ public class UserController {
         return new ObjectMapper().writeValueAsString(user);
     }
 
+    @PostMapping("/insert")
+    public String insertUser(@RequestBody User user){
+        System.out.println(user.toString());
+        String dept = user.getDept();
+        userService.insertUser(user);
+
+        return "insert success";
+    }
+
 
 }

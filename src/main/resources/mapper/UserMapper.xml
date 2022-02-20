@@ -18,4 +18,8 @@
     <select id = "queryAllUsers" resultType= "com.yao.mybatis.entity.User">
         select * from user
     </select>
+
+    <insert id = "insertUser" parameterType="com.yao.mybatis.entity.User" >
+        insert into user (id,name,dept,phone,website) values (#{id},#{name},#{dept},#{phone},#{website})
+    </insert>
 </mapper>
