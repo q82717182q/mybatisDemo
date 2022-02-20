@@ -22,4 +22,9 @@
     <insert id = "insertUser" parameterType="com.yao.mybatis.entity.User" >
         insert into user (id,name,dept,phone,website) values (#{id},#{name},#{dept},#{phone},#{website})
     </insert>
+
+    <update id="updateUser" parameterType="com.yao.mybatis.entity.User">
+        update user set id = #{id}, name = #{name}, dept = #{dept}, phone = #{phone}, website = #{website} where id = #{id}
+    </update>
+
 </mapper>

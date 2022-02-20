@@ -46,5 +46,12 @@ public class UserController {
         return "insert success";
     }
 
+    @PutMapping
+    public String updateUser(@RequestBody User user){
+        System.out.println(user.toString());
+        userService.updateUser(user);
+        return "update success";
+    }
+
 
 }

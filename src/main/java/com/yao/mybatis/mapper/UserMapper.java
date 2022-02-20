@@ -12,7 +12,8 @@ import java.util.List;
 public interface UserMapper {
     User getUserById(int id);
     List<User> queryAllUsers();
-
-
     void insertUser(User user);
+    void updateUser(User user);
+
+
 }
