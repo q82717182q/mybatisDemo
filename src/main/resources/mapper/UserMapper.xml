@@ -27,4 +27,7 @@
         update user set id = #{id}, name = #{name}, dept = #{dept}, phone = #{phone}, website = #{website} where id = #{id}
     </update>
 
+    <delete id="deleteUser" parameterType="com.yao.mybatis.entity.User">
+        delete from user where id = #{id}
+    </delete>
 </mapper>

@@ -14,6 +14,6 @@ public interface UserMapper {
     List<User> queryAllUsers();
     void insertUser(User user);
     void updateUser(User user);
-
+    void deleteUser(int id);
 
 }

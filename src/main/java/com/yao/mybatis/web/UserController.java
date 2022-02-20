@@ -53,5 +53,13 @@ public class UserController {
         return "update success";
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable int id){
+        System.out.println("id : " + id);
+        userService.deleteUser(id);
+        return "delete success";
+    }
+
+
 
 }
