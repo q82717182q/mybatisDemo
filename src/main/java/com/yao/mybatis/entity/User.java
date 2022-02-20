@@ -1,4 +1,4 @@
-package com.yao.mybatis.models;
+package com.yao.mybatis.entity;
 
 import lombok.Data;
 
@@ -13,4 +13,7 @@ public class User {
     private String phone;
     private String website;
 
+    public User(int id) {
+        this.id = id;
+    }
 }

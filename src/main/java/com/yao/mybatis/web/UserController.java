@@ -2,48 +2,40 @@ package com.yao.mybatis.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yao.mybatis.models.User;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import com.yao.mybatis.entity.User;
+import com.yao.mybatis.mapper.UserMapper;
+import com.yao.mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.Session;
-import javax.websocket.server.PathParam;
-import java.io.Reader;
+import java.util.List;
 
 /**
  * Created by Jack Yao on 2022/2/19 9:46 PM
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
-    private static SqlSessionFactory sqlSessionFactory;
-    private static Reader reader;
-    static {
-        try{
-            reader = Resources.getResourceAsReader("config/Configure.xml");
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-    public static SqlSessionFactory getSession(){
-        return sqlSessionFactory;
-    }
+    @Autowired
+    private UserService userService;
 
-    @ResponseBody
     @GetMapping("/{id}")
-    public String getUser(@PathVariable int id) throws JsonProcessingException {
-        SqlSession session = sqlSessionFactory.openSession();
-        User user = (User)session.selectOne("com.yao.mybatis.models.UserMapper.GetUserByID",1);
-        System.out.println(user.toString());
+    public String getUserById(@PathVariable int id) throws JsonProcessingException {
+        User user = userService.getUserById(id);
+        System.out.println(user);
         System.out.println(new ObjectMapper().writeValueAsString(user));
         return new ObjectMapper().writeValueAsString(user);
-
     }
+
+    @GetMapping("")
+    public String queryAllUsers() throws JsonProcessingException {
+        List<User> user = userService.queryAllUsers();
+        System.out.println(user);
+        System.out.println(new ObjectMapper().writeValueAsString(user));
+        return new ObjectMapper().writeValueAsString(user);
+    }
+
+
 }

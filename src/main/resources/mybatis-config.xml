@@ -9,8 +9,9 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="User" type="com.yao.mybatis.models.User" />
+        <typeAlias alias="User" type="com.yao.mybatis.entity.User" />
     </typeAliases>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC" />
@@ -24,10 +25,6 @@
     </environments>
 
 
-    <mappers>
-        <!-- // power by http://www.gitbook.net -->
-        <mapper resource="com/yao/mybatis/models/User.xml" />
-    </mappers>
 
 
 </configuration>
